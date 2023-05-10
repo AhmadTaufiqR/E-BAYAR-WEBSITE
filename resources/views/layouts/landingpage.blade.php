@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/landingPage/img/favicon.png" rel="icon">
+  <link href="assets/landingPage/img/logo.png" rel="icon">
   <link href="assets/landingPage/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -143,7 +143,7 @@
           <div class="col-xl-6 col-lg-8">
             <h1>Silahkan download Aplikasi<H1><span>E</span>-BAYAR </H1></h1>
             <h2>Sistem Pembayaran Online Sekolah</h2>
-            <a class="btn btn-warning href="download">Download</a>
+            <a class="btn btn-warning" href="download">Download</a>
           </div>
             </div>
       </div>

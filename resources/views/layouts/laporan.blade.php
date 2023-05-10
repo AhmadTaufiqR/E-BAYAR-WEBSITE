@@ -9,8 +9,8 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="assets/dashBoard/img/favicon.png" rel="icon">
+    <!-- logos -->
+    <link href="assets/dashBoard/img/logo.png" rel="icon">
     <link href="assets/dashBoard/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
