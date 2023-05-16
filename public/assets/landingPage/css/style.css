@@ -145,7 +145,7 @@ h6 {
 }
 
 #header .logo a span {
-  color: #52c7e4;
+  color: #4154f1;
 }
 
 #header .logo img {
@@ -156,19 +156,20 @@ h6 {
 #  Get Startet Button
 --------------------------------------------------------------*/
 .get-started-btn {
-  color: #fff;
+  color: #ffffff;
   border-radius: 4px;
   padding: 7px 25px 8px 25px;
   white-space: nowrap;
   transition: 0.3s;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 600;
   display: inline-block;
-  border: 2px solid #ffc451;
+
 }
 
 .get-started-btn:hover {
-  background: #ffbb38;
-  color: #343a40;
+  background: #4154f1;
+  color: #eaecee;
 }
 
 @media (max-width: 992px) {
@@ -224,7 +225,7 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #ffc451;
+  color: #4154f1;
 }
 
 .navbar .dropdown ul {
@@ -437,7 +438,7 @@ h6 {
 }
 
 #hero h1 span {
-  color: #ffc451;
+  color: #4154f1;
 }
 
 #hero h2 {
@@ -1160,8 +1161,8 @@ section {
 
 .contact .info i {
   font-size: 20px;
-  background: #ffc451;
-  color: #4d4a87;
+  background: #4154f1;
+  color: #151515;
   float: left;
   width: 44px;
   height: 44px;
@@ -1264,7 +1265,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit] {
-  background: #ffc451;
+  background: #4154f1;
   border: 0;
   padding: 10px 24px;
   color: #4d4a87;
@@ -1273,7 +1274,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: #ffcd6b;
+  background: #d16ff8;
 }
 
 @keyframes animate-loading {

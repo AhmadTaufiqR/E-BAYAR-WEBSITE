@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/landingPage/img/favicon.png" rel="icon">
+  <link href="assets/landingPage/img/logo.png" rel="icon">
   <link href="assets/landingPage/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -59,7 +59,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="/login" class="get-started-btn scrollto">Login</a>
+      <a href="" class="get-started-btn scrollto">Login</a>
       <div>
         @yield('content')
     </div>
@@ -122,10 +122,12 @@
     <section id="cta" class="cta">
       <div class="container" data-aos="zoom-in">
 
+
+
         <div class="text-center">
-          <h3>SD IT AL-USWAH Banyuwangi</h3>
-          <p>Sebuah sekolah dasar swasta yang mempunyai visi membentuk generasi Rabbani yang intelek dan kreatif. Kurikulum yang digunakan adalah kurikulum dari Dinas Pendidikan dipadukan dengan kurikulum keislaman ditambah dengan pembelajaran Al Qur'an.</p>
-          <a class="cta-btn" href="about">Liat selengkapnya</a>
+          <h3>Call To Action</h3>
+          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a class="cta-btn" href="#">Call To Action</a>
         </div>
 
       </div>
@@ -138,11 +140,126 @@
         <div class="row" data-aos="fade-up" data-aos-delay="150">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
-          <div class="col-xl-6 col-lg-8">
-            <h1>Silahkan download Aplikasi<H1><span>E</span>-BAYAR </H1></h1>
-            <h2>Sistem Pembayaran Online Sekolah</h2>
-            <a class="btn btn-warning href="download">Download</a>
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/landingPage/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 1</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/landingPage/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/landingPage/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+                <div class="portfolio-links">
+                  <a href="assets/landingPage/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/landingPage/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 2</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/landingPage/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/landingPage/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 2</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/landingPage/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/landingPage/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Web 2</h4>
+                <p>Web</p>
+                <div class="portfolio-links">
+                  <a href="assets/landingPage/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/landingPage/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 3</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/landingPage/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/landingPage/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 1</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/landingPage/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/landingPage/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 3</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/landingPage/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
           </div>
             </div>
       </div>
