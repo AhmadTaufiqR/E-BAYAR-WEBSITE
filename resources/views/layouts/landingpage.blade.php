@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/landingPage/img/favicon.png" rel="icon">
+  <link href="assets/landingPage/img/logo.png" rel="icon">
   <link href="assets/landingPage/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -122,6 +122,8 @@
     <section id="cta" class="cta">
       <div class="container" data-aos="zoom-in">
 
+
+
         <div class="text-center">
           <h3>SD IT AL-USWAH Banyuwangi</h3>
           <p>Sebuah sekolah dasar swasta yang mempunyai visi membentuk generasi Rabbani yang intelek dan kreatif. Kurikulum yang digunakan adalah kurikulum dari Dinas Pendidikan dipadukan dengan kurikulum keislaman ditambah dengan pembelajaran Al Qur'an.</p>
@@ -145,6 +147,8 @@
             <a class="btn btn-warning href="download">Download</a>
           </div>
             </div>
+      </div>
+    </section><!-- End News Section -->
       </div>
     </section><!-- End News Section -->
 
