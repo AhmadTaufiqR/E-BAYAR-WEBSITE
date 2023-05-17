@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::get('/landingpage', function () {
 Route::get('/login', function () {
     return view('layouts.login');
 });
+Route::post('/login-check',[SiswaController::class, 'login'])->name('login-chack');
 Route::get('/dashboard', function () {
     return view('layouts.dashboard');
 });

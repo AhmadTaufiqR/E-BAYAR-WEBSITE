@@ -7,6 +7,7 @@ use App\Models\siswa;
 use App\Helper\ApiFormatter;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use \Storage;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -71,8 +72,18 @@ class SiswaController extends Controller
                 'no_telephone' => 'required',
                 'email' => 'required',
                 'alamat' => 'required',
-                'gambar' => 'required',
+                'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
+
+            $filename = '';
+
+            if ($request->file('gambar')) {
+                $file = $request->file('gambar');
+                $generateFilename = join('', [uniqid(), now()->timestamp]);
+                $extention = $file->getClientOriginalExtension();
+                $filename = join('.', [$generateFilename, $extention]);
+                $filename = $file->storeAs('siswa',  $filename);
+            }
         
             $tb_siswa = siswa::create([
                 'username' => $request->username,
@@ -81,7 +92,7 @@ class SiswaController extends Controller
                 'no_telephone' => $request->no_telephone,
                 'email' => $request->email,
                 'alamat' => $request->alamat,
-                'gambar' => $request->gambar,
+                'gambar' => $filename,
             ]);
 
             $data = siswa::where('id','=',$tb_siswa->id)->get();
@@ -142,20 +153,29 @@ class SiswaController extends Controller
                 'email' => 'required',
                 'alamat' => 'required',
                 'gambar' => 'required',
-                'jenis_kelamin' => 'required',
             ]);
             
             $tb_siswa = siswa::findOrFail($id);
 
+            if ($request->file('gambar')) {
+                if (Storage::exists($tb_siswa->gambar)) {
+                    Storage::delete([$tb_siswa->gambar]);
+                }
+                $file = $request->file('gambar');
+                $generateFilename = join('', [uniqid(), now()->timestamp]);
+                $extention = $file->getClientOriginalExtension();
+                $filename = join('.', [$generateFilename, $extention]);
+                $filename = $file->storeAs('siswa',  $filename);
+            }
+
             $tb_siswa->update([
                 'username' => $request->username,
-                'password' => $request->password,
+                'password' =>Hash::make($request->password),
                 'nama' => $request->nama,
                 'no_telephone' => $request->no_telephone,
                 'email' => $request->email,
                 'alamat' => $request->alamat,
-                'gambar' => $request->gambar,
-                'jenis_kelamin' => $request->jenis_kelamin
+                'gambar' => $filename,
             ]);
 
         $data = siswa::where('id','=',$tb_siswa->id)->get();

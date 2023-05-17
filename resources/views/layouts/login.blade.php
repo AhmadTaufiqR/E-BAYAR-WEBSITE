@@ -63,7 +63,7 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" method="POST" action="{{ route('login-chack') }}">
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
@@ -87,7 +87,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <a class="btn btn-primary w-100" href="dashboard" class="">Login</a>
+                      <a class="btn btn-primary w-100" type="submit" name="submit" for="submit">Login</a>
                     </div>
                   
                   </form>

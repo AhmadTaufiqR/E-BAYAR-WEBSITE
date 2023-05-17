@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use \Storage;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -67,15 +68,25 @@ class AdminController extends Controller
                 'password' => 'required',
                 'nama' => 'required',
                 'jenis_kelamin' => 'required',
-                'gambar' => "required",
+                'gambar' => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'",
             ]);
+
+            $filename = '';
+
+            if ($request->file('gambar')) {
+                $file = $request->file('gambar');
+                $generateFilename = join('', [uniqid(), now()->timestamp]);
+                $extention = $file->getClientOriginalExtension();
+                $filename = join('.', [$generateFilename, $extention]);
+                $filename = $file->storeAs('admin',  $filename);
+            }
 
             $tb_admin = admin::create([
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'gambar' =>$request->gambar,
+                'gambar' =>$filename,
             ]);
         $data = admin::where('id','=',$tb_admin->id)->get();
 
@@ -136,12 +147,23 @@ class AdminController extends Controller
             
             $tb_admin = admin::findOrFail($id);
 
+            if ($request->file('gambar')) {
+                if (Storage::exists($tb_admin->gambar)) {
+                    Storage::delete([$tb_admin->gambar]);
+                }
+                $file = $request->file('gambar');
+                $generateFilename = join('', [uniqid(), now()->timestamp]);
+                $extention = $file->getClientOriginalExtension();
+                $filename = join('.', [$generateFilename, $extention]);
+                $filename = $file->storeAs('admin',  $filename);
+            }
+
             $tb_admin->update([
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'gambar' => $request->gambar
+                'gambar' => $filename
             ]);
 
         $data = admin::where('id','=',$tb_admin->id)->get();
