@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+//API
 //route siswa
 Route::post('/siswa/login', [SiswaController::class, 'login']);
 Route::get('/siswa', [SiswaController::class, 'index']);
