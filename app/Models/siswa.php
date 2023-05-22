@@ -27,4 +27,11 @@ class siswa extends Authenticatable
     ];
 
     protected $hidden = [];
+
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            // get: fn ($image) => asset('/storage.admin/' . $image),
+        );
+    }
 }

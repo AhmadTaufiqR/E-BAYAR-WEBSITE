@@ -20,10 +20,11 @@ Route::get('/', function () {
 Route::get('/landingpage', function () {
     return view('layouts.landingpage');
 });
-Route::get('/login', function () {
+Route::post('/login', function () {
     return view('layouts.login');
 });
-Route::post('/login-check',[SiswaController::class, 'login'])->name('login-chack');
+Route::post('/login-check',[AdminController::class, 'login'])->name('login-check');
+
 Route::get('/dashboard', function () {
     return view('layouts.dashboard');
 });

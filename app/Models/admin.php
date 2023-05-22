@@ -16,6 +16,8 @@ class admin extends Authenticatable
     use HasFactory;
 
     protected $table = "tb_admin";
+    protected $primaryKey = 'id';
+    // protected $guarded = [];
     protected $fillable = [
         'username',
         'password',
