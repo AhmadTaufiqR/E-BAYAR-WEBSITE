@@ -16,6 +16,7 @@ class siswa extends Authenticatable
     use HasFactory;
 
     protected $table = 'tb_siswa';
+    protected $primaryKey = "id";
     protected $fillable = [
         'username',
         'password',
