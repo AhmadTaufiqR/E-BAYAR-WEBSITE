@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 use \Storage;
+use \DB;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -20,15 +21,18 @@ class AdminController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function index(request $request)
     {
-        $data = admin::all();
+        $admin=DB::table('tb_admin')->get();
+        return view('layouts.dataadmin', ['admin'=>$admin]);
+        // $data=admin::paginate(5);
+        // $data = admin::all();
         
-        if($data){
-            return ApiFormatter::createApi(200, 'Success', $data);
-        }else{
-            return ApiFormatter::createApi(400, 'Failed');
-        }
+        // if($data){
+        //     return ApiFormatter::createApi(200, 'Success', $data);
+        // }else{
+        //     return ApiFormatter::createApi(400, 'Failed');
+        // }
     }
     
     public function login(request $request): RedirectResponse{

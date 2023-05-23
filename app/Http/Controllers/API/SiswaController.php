@@ -8,6 +8,7 @@ use App\Helper\ApiFormatter;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 use \Storage;
+use \DB;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -17,16 +18,19 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        $data = siswa::all();
 
-        if($data){
-            // return ApiFormatter::createApi(200, 'Sucess',$data);
-            return ApiFormatter::createApi(200, 'Success', $data);
-        }else{
-            return ApiFormatter::createApi(400, 'Failed');
-        }
+        $siswa=DB::table('tb_siswa')->get();
+        return view('layouts.datasiswa', ['siswa'=>$siswa]);
+        // $data = siswa::all();
+        // // return view('siswa',compact($data));
+        // if($data){
+        //     // return ApiFormatter::createApi(200, 'Sucess',$data);
+        //     return ApiFormatter::createApi(200, 'Success', $data);
+        // }else{
+        //     return ApiFormatter::createApi(400, 'Failed');
+        // }
     }
 
     /**

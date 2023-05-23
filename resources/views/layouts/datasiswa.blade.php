@@ -264,7 +264,10 @@
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
 
-                                <button type="button" class="btn btn-primary">Primary</button>
+                                {{-- <button type="button" class="btn btn-primary">Primary</button> --}}
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                                    Tambah Data
+                                </button>
 
                             </div>
                         </div>
@@ -276,9 +279,9 @@
                                     <p> </p>
                                     <!-- Modal Button Tambah Data -->
                                     <div class="d-grid gap-10 d-md-flex justify-content-md-end">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                                        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
                                             Tambah Data
-                                        </button>
+                                        </button> --}}
                                         <div class="modal fade" id="verticalycentered" tabindex="-1">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
@@ -289,20 +292,28 @@
                                                     <div class="modal-body">
                                                         <form class="row g-3">
                                                             <div class="col-12">
-                                                                <label for="inputNanme4" class="form-label">Your Name</label>
-                                                                <input type="text" class="form-control" id="inputNanme4">
+                                                                <label for="username" class="form-label">Username</label>
+                                                                <input type="text" class="form-control" id="username">
                                                             </div>
                                                             <div class="col-12">
-                                                                <label for="inputEmail4" class="form-label">Email</label>
-                                                                <input type="email" class="form-control" id="inputEmail4">
+                                                                <label for="nama" class="form-label">Nama</label>
+                                                                <input type="email" class="form-control" id="nama">
                                                             </div>
                                                             <div class="col-12">
-                                                                <label for="inputPassword4" class="form-label">Password</label>
-                                                                <input type="password" class="form-control" id="inputPassword4">
+                                                                <label for="no_telephone" class="form-label">No Telephone</label>
+                                                                <input type="password" class="form-control" id="no_telephone">
                                                             </div>
                                                             <div class="col-12">
-                                                                <label for="inputAddress" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                                                <label for="email" class="form-label">Email</label>
+                                                                <input type="text" class="form-control" id="email">
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <label for="alamat" class="form-label">Alamat</label>
+                                                                <input type="text_area" class="form-control" id="alamat">
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <label for="gambar" class="form-label">Foto</label>
+                                                                <input type="file" class="form-control" id="gambar">
                                                             </div>
                                                         </form>
                                                     </div>
@@ -317,203 +328,44 @@
                                         <a class="btn btn-light disabled" role="button" aria-disabled="true"></a>
                                     </div>
                                 </div>
-
                                 <div class="card-body">
                                     <h5 class="card-title">Data Siswa </h5>
-                                    <p>Jumlah Siswa : 25</p>
+                                    {{-- <p>Jumlah Tanggunan : 25</p> --}}
                                     <!-- Tabel -->
                                     <table class="table table-borderless datatable">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
+                                                <th scope="col">Username</th>
                                                 <th scope="col">Nama</th>
+                                                <th scope="col">No Telephone</th>
+                                                <th scope="col">Email</th>
                                                 <th scope="col">Alamat</th>
+                                                <th scope="col">Foto</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($siswa as $ss)
                                             <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
+                                            <td>{{ $ss->id }}</td>
+                                            <td>{{ $ss->username }}</td>
+                                            <td>{{ $ss->nama }}</td>
+                                            <td>{{ $ss->no_telephone }}</td>
+                                            <td>{{ $ss->email }}</td>
+                                            <td>{{ $ss->alamat }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $ss->gambar) }}" height="100px" width="100px" alt="Siswa Photo" class="border m-2">
+                                            </td>
+                                            <td><span class="badge bg-success">Approved</span></td>
+                                            <td><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hapus</button></td>
+                                            <td><button type="button" class="btn btn-primary"width: 100%;
+                                                margin-top: 10px;>Edit</button></td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-
-                            </div>
+                                                {{-- </tbody>
+                                        <tbody> --}}
+                                            @endforeach
                         </div><!-- End Recent Sales -->
                     </div>
                 </div><!-- End Left side columns -->
@@ -523,16 +375,16 @@
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
+    {{-- <footer id="footer" class="footer">
         <div class="copyright">
             &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
         </div>
-        <div class="credits">
+        <div class="credits"> --}}
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
         </div>
     </footer><!-- End Footer -->
 

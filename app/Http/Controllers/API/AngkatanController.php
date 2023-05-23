@@ -46,11 +46,11 @@ class AngkatanController extends Controller
     {
         try {
             $request->validate([
-                'generasi' => 'required',
+                'tahun' => 'required',
             ]);
 
             $tb_angkatan = angkatan::create([
-                'generasi' => $request->generasi,
+                'tahun' => $request->tahun,
             ]);
         $data = angkatan::where('id','=',$tb_angkatan->id)->get();
 
@@ -101,15 +101,18 @@ class AngkatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->wantsJson()) {
+            return response()->json(['P+'], 200);
+        }
         try {
             $request ->validate([
-                'generasi' => 'required',
+                'tahun' => 'required',
             ]);
             
             $tb_angkatan = angkatan::findOrFail($id);
 
             $tb_angkatan->update([
-                'generasi' => $request->generasi
+                'tahun' => $request->tahun
             ]);
 
         $data = angkatan::where('id','=',$tb_angkatan->id)->get();

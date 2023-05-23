@@ -31,12 +31,8 @@ Route::get('/dashboard', function () {
 Route::get('/register', function () {
    return view('layouts.register');
 });
-Route::get('/datasiswa', function () {
-    return view('layouts.datasiswa');
-});
-Route::get('/dataadmin', function () {
-    return view('layouts.dataadmin');
-});
+Route::get('/datasiswa', [App\Http\Controllers\API\SiswaController::class, 'index']);
+Route::get('/dataadmin', [App\Http\Controllers\API\AdminController::class, 'index']);
 Route::get('/tanggunganspp', function () {
     return view('layouts.tanggunganspp');
 });
