@@ -25,14 +25,16 @@ class siswa extends Authenticatable
         'email',
         'alamat',
         'gambar',
+        'id_angkatan',
+        'id_kelas'
     ];
 
     protected $hidden = [];
 
-    protected function image(): Attribute
-    {
-        return Attribute::make(
-            // get: fn ($image) => asset('/storage.admin/' . $image),
-        );
-    }
+    // protected function image(): Attribute
+    // {
+    //     return Attribute::make(
+    //         // get: fn ($image) => asset('/storage.admin/' . $image),
+    //     );
+    // }
 }

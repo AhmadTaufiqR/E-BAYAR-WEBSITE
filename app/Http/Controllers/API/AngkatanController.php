@@ -11,94 +11,108 @@ use Illuminate\Http\Request;
 class AngkatanController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         $data = angkatan::all();
-
+        
         if($data){
             return ApiFormatter::createApi(200, 'Success', $data);
         }else{
             return ApiFormatter::createApi(400, 'Failed');
         }
     }
-
+    
+    public function getAll()
+    {
+        try {
+            $data = angkatan::all();
+            
+            if($data){
+                return ApiFormatter::createApi(200, 'Success', $data);
+            }else{
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400,'Failed');
+        }
+    }
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function create()
     {
         //
     }
-
+    
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(Request $request)
     {
         try {
             $request->validate([
                 'tahun' => 'required',
             ]);
-
+            
             $tb_angkatan = angkatan::create([
                 'tahun' => $request->tahun,
             ]);
-        $data = angkatan::where('id','=',$tb_angkatan->id)->get();
-
-        if($data){
-            return ApiFormatter::createApi(200, 'Success', $data);
-        }else{
-            return ApiFormatter::createApi(400, 'Failed');
+            $data = angkatan::where('id','=',$tb_angkatan->id)->get();
+            
+            if($data){
+                return ApiFormatter::createApi(200, 'Success', $data);
+            }else{
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400,'Failed');
         }
-    } catch (Exeception $error) {
-        return ApiFormatter::createApi(400,'Failed');
     }
-    }
-
+    
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function show($id)
     {
         $data = angkatan::where('id','=',$id)->get();
-
+        
         if($data){
             return ApiFormatter::createApi(200, 'Success',$data);
         }else{
             return ApiFormatter::createApi(400,'Failed'); 
         }
     }
-
+    
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function edit($id)
     {
         //
     }
-
+    
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function update(Request $request, $id)
     {
         if($request->wantsJson()) {
@@ -110,33 +124,33 @@ class AngkatanController extends Controller
             ]);
             
             $tb_angkatan = angkatan::findOrFail($id);
-
+            
             $tb_angkatan->update([
                 'tahun' => $request->tahun
             ]);
-
-        $data = angkatan::where('id','=',$tb_angkatan->id)->get();
-        
-        if($data){
-            return ApiFormatter::createApi(200, 'Success',$data);
-        }else{
-            return ApiFormatter::createApi(400,'Failed'); 
-        }
-        } catch (Exeception $error) {
+            
+            $data = angkatan::where('id','=',$tb_angkatan->id)->get();
+            
+            if($data){
+                return ApiFormatter::createApi(200, 'Success',$data);
+            }else{
+                return ApiFormatter::createApi(400,'Failed'); 
+            }
+        } catch (Exception $error) {
             return ApiFormatter::createApi(400,'Failed');
         }
     }
-
+    
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function destroy($id)
     {
         $tb_angkatan = angkatan::findOrfail($id);
-
+        
         $data = $tb_angkatan->delete();
         if($data){
             return ApiFormatter::createApi(200, 'Success',$data);

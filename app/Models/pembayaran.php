@@ -13,10 +13,12 @@ class pembayaran extends Model
 
     protected $table = 'tb_pembayaran';
     protected $fillable = [
-        'jenis_pembayaran',
-        'terakhir_pembayaran',
+        'bulan',
+        'tipe',
+        'jumlah_bayar',
         'awal_pembayaran',
-        'jumlah_pembayaran'
+        'akhir_bayar',
+        'id_admin'
     ];
 
     protected $hidden = [];

@@ -15,6 +15,7 @@ class CreateTbPembayaran extends Migration
     {
         Schema::create('tb_pembayaran', function (Blueprint $table) {
             $table->id();
+            $table->string('bulan')->nullable(true);
             $table->string('tipe')->nullable(true);
             $table->integer('jumlah_bayar')->nullable(true);
             $table->date('awal_pembayaran')->nullable(true);

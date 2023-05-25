@@ -26,6 +26,21 @@ class PembayaranController extends Controller
         }
     }
 
+    public function getAll()
+    {
+        try {
+            $data = pembayaran::all();
+            
+            if($data){
+                return ApiFormatter::createApi(200, 'Success', $data);
+            }else{
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400,'Failed');
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,27 +61,32 @@ class PembayaranController extends Controller
     {
         try {
             $request->validate([
-                'jenis_pembayaran' => 'required',
-                'terakhir_pembayaran' => 'required',
-                'awal_pembayaran' => 'required',
-                'jumlah_pembayaran' => 'required',
+                'bulan' => 'required',
+                'tipe' => 'required',
+                'jumlah_bayar'=> 'required',
+                'awal_pembayaran'=> 'required',
+                'akhir_bayar'=> 'required',
+                'id_admin'=> 'required'
             ]);
 
             $tb_pembayaran = pembayaran::create([
-                'jenis_pembayaran' => $request->jenis_pembayaran,
-                'terakhir_pembayaran' => $request->terakhir_pembayaran,
-                'awal_pembayaran' => $request->awal_pembayaran,
-                'jumlah_pembayaran' => $request->jumlah_pembayaran,
+                'bulan' => $request->bulan,
+                'tipe' => $request->tipe,
+                'jumlah_bayar'=> $request->jumlah_bayar,
+                'awal_pembayaran'=> $request->awal_pembayaran,
+                'akhir_bayar'=> $request->akhir_bayar,
+                'id_admin'=> $request->id_admin
             ]);
         $data = pembayaran::where('id','=',$tb_pembayaran->id)->get();
 
         if($data){
             return ApiFormatter::createApi(200, 'Success', $data);
-        }else{
-            return ApiFormatter::createApi(400, 'Failed');
         }
-    } catch (Exeception $error) {
-        return ApiFormatter::createApi(400,'Failed');
+        // else{
+        //     return ApiFormatter::createApi(400, 'Failed');
+        // }
+    } catch (Exception $error) {
+        return ApiFormatter::createApi(400,$error);
     }
     }
 
@@ -109,19 +129,23 @@ class PembayaranController extends Controller
     {
         try {
             $request ->validate([
-                'jenis_pembayaran' => 'required',
-                'terakhir_pembayaran' => 'required',
-                'awal_pembayaran' => 'required',
-                'jumlah_pembayaran' => 'required',
+                'bulan' => 'required',
+                'tipe' => 'required',
+                'jumlah_bayar'=> 'required',
+                'awal_pembayaran'=> 'required',
+                'akhir_bayar'=> 'required',
+                'id_admin'=> 'required'
             ]);
             
             $tb_pembayaran = pembayaran::findOrFail($id);
 
             $tb_pembayaran->update([
-                'jenis_pembayaran' => $request->jenis_pembayaran,
-                'terakhir_pembayaran' => $request->terakhir_pembayaran,
-                'awal_pembayaran' => $request->awal_pembayaran,
-                'jumlah_pembayaran' => $request->jumlah_pembayaran
+                'bulan' => $request->bulan,
+                'tipe' => $request->tipe,
+                'jumlah_bayar'=> $request->jumlah_bayar,
+                'awal_pembayaran'=> $request->awal_pembayaran,
+                'akhir_bayar'=> $request->akhir_bayar,
+                'id_admin'=> $request->id_admin
             ]);
 
         $data = pembayaran::where('id','=',$tb_pembayaran->id)->get();
@@ -131,7 +155,7 @@ class PembayaranController extends Controller
         }else{
             return ApiFormatter::createApi(400,'Failed'); 
         }
-        } catch (Exeception $error) {
+        } catch (Exception $error) {
             return ApiFormatter::createApi(400,'Failed');
         }
     }

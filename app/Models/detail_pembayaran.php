@@ -13,9 +13,13 @@ class detail_pembayaran extends Model
 
     protected $table = 'tb_detail_pembayaran';
     protected $fillable = [
-        'jumlah_pembayaran',
-        'tanggal_pembayaran',
-        'status_pembayaran',
+        'id_pembayaran',
+        'id_siswa',
+        'transaction_id',
+        'order_id',
+        'tipe_pembayaran',
+        'jumlah',
+        'status_pembayaran'
     ];
 
     protected $hidden = [];
