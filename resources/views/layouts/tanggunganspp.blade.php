@@ -255,7 +255,8 @@
 
         <!-- End Page Title -->
         <section class="section dashboard">
-            <div class="row">
+            
+        <div class="row">
 
                 <!-- Left side columns -->
                 <div class="col-12">
