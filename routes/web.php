@@ -15,7 +15,7 @@ use App\Http\Controllers\API\AdminController;
 */
 
 Route::get('/', function () {
-    return view('layouts.landingpage');
+    return view('layouts.dashboard');
 });
 Route::get('/landingpage', function () {
     return view('layouts.landingpage');
@@ -48,13 +48,13 @@ Route::get('/laporan', function () {
 Route::get('/profile', function () {
     return view('layouts.profile');
 });
-
-
 Route::get('/login', function () {
     return view('layouts.login');
 });
-
 Route::get('/register', function () {
     return view('layouts.register');
 });
+
+Route::post('/admin/tambah',[AdminController::class,'tambah'])->name('simpanData');
+Route::resource('/admin/post',AdminController::class)->middleware('auth');
 
