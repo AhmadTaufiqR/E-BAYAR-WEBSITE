@@ -256,18 +256,74 @@
         <!-- End Page Title -->
         <section class="section dashboard">
             <div class="row">
+                <div class="col-xxl-4 col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Filter</h6>
+                                </li>
+
+                                <li><a class="dropdown-item" href="#">Today</a></li>
+                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Saldo <span>| Saldo Siswa</span></h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>Rp.345.000.000.00</h6>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-md-6">
+                    <div class="card info-card revenue-card">
+
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Tarik Saldo Pengeluaran</h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="ri ri-hand-coin-line"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <div class="col-sm-25">
+                                        <input type="text" class="form-control" placeholder="Masukkan Jumlah Saldo">
+                                    </div>
+                                </div>
+                               
+                                <div class="ps-3">
+                                    <div class="col-sm-25">
+                                  
+                                        <button type="button" class="btn btn-primary">Tarik</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 
                 <!-- Left side columns -->
                 <div class="col-12">
                     <div class="row-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
-
-                                <button type="button" class="btn btn-primary">Primary</button>
-
-                            </div>
-                        </div>
                         <!-- Recent Sales -->
                         <div class="col-12">
                             <div class="card recent-sales overflow-auto">
@@ -276,9 +332,7 @@
                                     <p> </p>
                                     <!-- Modal Button Tambah Data -->
                                     <div class="d-grid gap-10 d-md-flex justify-content-md-end">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
-                                            Tambah Data
-                                        </button>
+                                        
                                         <div class="modal fade" id="verticalycentered" tabindex="-1">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
@@ -319,8 +373,8 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Data Penarikan </h5>
-                                    <p>Jumlah Tanggunan : 25</p>
+                                    <h5 class="card-title">Detail Pembayaran yang Telah Selesai</h5>
+                                    <p>Jumlah yang selesai: 25</p>
                                     <!-- Tabel -->
                                     <table class="table table-borderless datatable">
                                         <thead>
@@ -522,19 +576,7 @@
 
     </main><!-- End #main -->
 
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-        <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-    </footer><!-- End Footer -->
+
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

@@ -28,7 +28,7 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/dashBoard/css/style.css" rel="stylesheet">
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.5.0
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -262,11 +262,11 @@
                     <div class="row-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"></h5>
+                                <h1 class="card-title"></h1>
 
                                 {{-- <button type="button" class="btn btn-primary">Primary</button> --}}
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
-                                    Tambah Data
+                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                                    <i class="bi bi-plus-circle"></i>
                                 </button>
 
                             </div>
@@ -349,27 +349,107 @@
                                         <tbody>
                                             @foreach ($siswa as $ss)
                                             <tr>
-                                            <td>{{ $ss->id }}</td>
-                                            <td>{{ $ss->username }}</td>
-                                            <td>{{ $ss->nama }}</td>
-                                            <td>{{ $ss->no_telephone }}</td>
-                                            <td>{{ $ss->email }}</td>
-                                            <td>{{ $ss->alamat }}</td>
-                                            <td>
-                                                <img src="{{ asset('storage/' . $ss->gambar) }}" height="100px" width="100px" alt="Siswa Photo" class="border m-2">
-                                            </td>
-                                            <td><span class="badge bg-success">Approved</span></td>
-                                            <td><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hapus</button></td>
-                                            <td><button type="button" class="btn btn-primary"width: 100%;
-                                                margin-top: 10px;>Edit</button></td>
+                                                <td>{{ $ss->id }}</td>
+                                                <td>{{ $ss->username }}</td>
+                                                <td>{{ $ss->nama }}</td>
+                                                <td>{{ $ss->no_telephone }}</td>
+                                                <td>{{ $ss->email }}</td>
+                                                <td>{{ $ss->alamat }}</td>
+                                                <td>
+                                                    <img src="{{ asset('storage/' . $ss->gambar) }}" height="100px" width="100px" alt="Siswa Photo" class="border m-2">
+                                                </td>
+                                                <td><span class="badge bg-success">Approved</span></td>
+                                                <td><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editAdmin"><i class="ri ri-edit-2-line"></i></button>
+                                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#infoAdmin"><i class="ri ri-information-line"></i></button>
+                                                    <button type="button" class="btn btn-danger btn-sm delete" ><i class="ri ri-delete-bin-5-line"></i></button>
+                                                    <div class="modal fade" id="editAdmin" tabindex="-1">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Edit Data Admin</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form class="row g-3">
+                                                                        <div class="col-12">
+                                                                            <label for="username" class="form-label">Username</label>
+                                                                            <input type="text" class="form-control" id="inputNanme4">
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <label for="nama" class="form-label">Nama</label>
+                                                                            <input type="email" class="form-control" id="inputEmail4">
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <label for="ijenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                                                            <input type="password" class="form-control" id="inputPassword4">
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <label for="oto" class="form-label">Foto</label>
+                                                                            <input type="file" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <input type="submit" class="btn btn-primary" value="Simpan" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal fade" id="infoAdmin" tabindex="-1">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Edit Data Admin</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+
+                                                                    <div class="row g-0">
+                                                                        <div class="col-md-4">
+                                                                            <img src="assets/dashBoard/img/card.jpg" class="card-img-top" alt="...">
+                                                                        </div>
+                                                                        <div class="col-md-10">
+                                                                            <form class="row g-3">
+                                                                                <div class="col-12">
+                                                                                    <label for="username" class="form-label">Username</label>
+                                                                                    <input type="text" class="form-control" id="inputNanme4">
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <label for="nama" class="form-label">Nama</label>
+                                                                                    <input type="email" class="form-control" id="inputEmail4">
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <label for="ijenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                                                                    <input type="password" class="form-control" id="inputPassword4">
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <label for="oto" class="form-label">Foto</label>
+                                                                                    <input type="file" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <input type="submit" class="btn btn-primary" value="Simpan" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td></td>
                                             </tr>
-                                                {{-- </tbody>
+                                            {{-- </tbody>
                                         <tbody> --}}
                                             @endforeach
-                        </div><!-- End Recent Sales -->
+                                </div><!-- End Recent Sales -->
+                            </div>
+                        </div><!-- End Left side columns -->
                     </div>
-                </div><!-- End Left side columns -->
-            </div>
         </section>
 
     </main><!-- End #main -->
@@ -380,12 +460,12 @@
             &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
         </div>
         <div class="credits"> --}}
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
-        </div>
+    <!-- All the links in the footer should remain intact. -->
+    <!-- You can delete the links only if you purchased the pro version. -->
+    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+    {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
+    </div>
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -402,6 +482,29 @@
 
     <!-- Template Main JS File -->
     <script src="assets/dashBoard/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+    <script>
+        $('.delete').click(function() {
+            swal({
+                    title: "Hapus Data",
+                    text: "Apa anda yakin hapus Data?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Data anda berhasil dihapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Data tidak jadi dihapus", {
+                            icon: "warning",
+                        });
+                    }
+                });
+        });
+    </script>
 
 </body>
 
