@@ -40,6 +40,21 @@ class SiswaController extends Controller
             return ApiFormatter::createApi(400,'Failed');
         }
     }
+
+    public function AllSiswa()
+    {
+        try {
+            $data = siswa::all();
+            
+            if($data){
+                return ApiFormatter::createApi(200, 'Success', $data);
+            }else{
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400,'Failed');
+        }
+    }
     
     /**
     * Show the form for creating a new resource.

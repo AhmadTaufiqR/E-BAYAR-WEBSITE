@@ -41,6 +41,36 @@ class PembayaranController extends Controller
         }
     }
 
+    public function all_tipe($tipe)
+    {
+        if ($tipe == "spp"||"SPP"||"Spp"||"SPp"||"SpP") {
+            try {
+                $data = pembayaran::where('tipe', '=', 'SPP')->get();
+                
+                if($data){
+                    return ApiFormatter::createApi(200, 'Success', $data);
+                }else{
+                    return ApiFormatter::createApi(400, 'Failed');
+                }
+            } catch (Exception $error) {
+                return ApiFormatter::createApi(400,'Failed');
+            }
+        } else if($tipe == "ug"||"UG"||"Uang Gedung"||"Ug") {
+            try {
+                $data = pembayaran::where('tipe', '=', 'Uang Gedung')->get();
+                
+                if($data){
+                    return ApiFormatter::createApi(200, 'Success', $data);
+                }else{
+                    return ApiFormatter::createApi(400, 'Failed');
+                }
+            } catch (Exception $error) {
+                return ApiFormatter::createApi(400,'Failed');
+            }
+        }
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

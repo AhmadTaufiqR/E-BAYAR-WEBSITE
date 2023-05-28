@@ -41,6 +41,7 @@ Route::get('/admin/destroy/{id}', [AdminController::class, 'destroy']);
 //route pembayaran
 Route::get('/pembayaran', [PembayaranController::class, 'index']);
 Route::get('/pembayaran/all', [PembayaranController::class, 'getAll']);
+Route::get('/pembayaran/all_tipe/{tipe}', [PembayaranController::class, 'all_tipe']);
 Route::post('/pembayaran/store', [PembayaranController::class, 'store']);
 Route::get('/pembayaran/show/{id}', [PembayaranController::class, 'show']);
 Route::post('/pembayaran/update/{id}', [PembayaranController::class, 'update']);
