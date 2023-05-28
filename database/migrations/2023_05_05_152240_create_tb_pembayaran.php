@@ -19,7 +19,6 @@ class CreateTbPembayaran extends Migration
             $table->string('tipe')->nullable(true);
             $table->integer('jumlah_bayar')->nullable(true);
             $table->date('awal_pembayaran')->nullable(true);
-            $table->date('akhir_bayar')->nullable(true);
             $table->unsignedBigInteger('id_admin');
             $table->foreign('id_admin')->references('id')->on('tb_admin');
             $table->softDeletes();

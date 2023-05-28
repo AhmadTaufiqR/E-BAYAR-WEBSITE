@@ -17,7 +17,6 @@ class pembayaran extends Model
         'tipe',
         'jumlah_bayar',
         'awal_pembayaran',
-        'akhir_bayar',
         'id_admin'
     ];
 
