@@ -23,15 +23,18 @@ class admin extends Authenticatable
         'password',
         'nama',
         'jenis_kelamin',
-        'gambar'
+        'gambar',
+        'created_at',
+        'update_at'
     ];
+    public $timestamps=true;
    
     protected $hidden = [];
 
-    protected function image(): Attribute
-    {
-        return Attribute::make(
-            // get: fn ($image) => asset('/storage.admin/' . $image),
-        );
-    }
+    // protected function image(): Attribute 
+    // {
+    //     return Attribute::make(
+    //         // get: fn ($image) => asset('/storage.admin/' . $image),
+    //     );
+    // }
 }

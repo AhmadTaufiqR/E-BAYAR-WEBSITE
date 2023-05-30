@@ -27,6 +27,7 @@
     <link href="assets/dashBoard/vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
     <link href="assets/dashBoard/css/style.css" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- =======================================================
@@ -268,6 +269,10 @@
                                 <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#verticalycentered">
                                     <i class="bi bi-plus-circle"></i>
                                 </button>
+                                
+                                
+                               
+                                
 
                             </div>
                         </div>
@@ -279,9 +284,7 @@
                                     <p> </p>
                                     <!-- Modal Button Tambah Data -->
                                     <div class="d-grid gap-10 d-md-flex justify-content-md-end">
-                                        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
-                                            Tambah Data
-                                        </button> --}}
+    
                                         <div class="modal fade" id="verticalycentered" tabindex="-1">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
@@ -290,37 +293,104 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="row g-3">
+                                                        <form class="row g-3" action="{{ route('/post') }}" method="POST">
+                                                            @csrf
                                                             <div class="col-12">
                                                                 <label for="username" class="form-label">Username</label>
-                                                                <input type="text" class="form-control" id="username">
+                                                                <input value="{{ old('username') }}" type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username">
                                                             </div>
+                                                            @error('username')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+
                                                             <div class="col-12">
                                                                 <label for="nama" class="form-label">Nama</label>
-                                                                <input type="email" class="form-control" id="nama">
+                                                                <input value="{{ old('nama') }}" type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama">
                                                             </div>
-                                                            <div class="col-12">
-                                                                <label for="no_telephone" class="form-label">No Telephone</label>
-                                                                <input type="password" class="form-control" id="no_telephone">
+                                                            @error('nama')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                           
+                                                            <div class="col-6">
+                                                                <label for="no_telephone" class="form-label @error('no_telephone') is-invalid @enderror">No Telepon</label>
+                                                                <input value="{{ old('no_telephone') }}" type="number" class="form-control" id="nohp" name="no_telephone">
                                                             </div>
-                                                            <div class="col-12">
+                                                            @error('no_telephone')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+
+                                                            <div class="col-6">
                                                                 <label for="email" class="form-label">Email</label>
-                                                                <input type="text" class="form-control" id="email">
+                                                                <input value="{{ old('email') }}" type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" >
                                                             </div>
+                                                            @error('email')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+
                                                             <div class="col-12">
                                                                 <label for="alamat" class="form-label">Alamat</label>
-                                                                <input type="text_area" class="form-control" id="alamat">
+                                                                <input value="{{ old('alamat') }}" type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat">
                                                             </div>
+                                                            @error('alamat')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+
+                                                            <div class="col-12">
+                                                                <label for="password" class="form-label">Password</label>
+                                                                <input value="{{ old('password') }}" type="password" class="form-control" id="password @error('password') is-invalid @enderror" name="password">
+                                                            </div>
+                                                            @error('password')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+
+                                                            <div class="col-6">
+                                                                <label for="id_kelas" class="form-label">Kelas</label>
+                                                                <select id="id_kelas @error('id_kelas') is-invalid @enderror" name="id_kelas" class="form-select" aria-label="Default select example">
+                                                                    <option selected value="{{ old('id_kelas') }}"   ></option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                    <option value="4">4</option>
+                                                                    <option value="5">5</option>
+                                                                    <option value="6">6</option>
+                                                                  </select>
+                                                            </div>
+                                                            @error('id_kelas')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+
+                                                            <div class="col-6">
+                                                                <label for="id_angkatan" class="form-label">Tahun</label>
+                                                                <select id="id_angkatan @error('id_angkatan') is-invalid @enderror" name="id_angkatan" class="form-select" aria-label="Default select example">
+                                                                    <option selected value="{{ old('id_angkatan') }}"   ></option>
+                                                                    <option value="1">2023</option>
+                                                                    <option value="2">2022</option>
+                                                                    <option value="3">2021</option>
+                                                                    <option value="4">2020</option>
+                                                                    <option value="5">2019</option>
+                                                                    <option value="6">2018</option>
+                                                                    <option value="7">2017</option>
+                                                                    <option value="8">2016</option>
+                                                                  </select>
+                                                            </div>
+                                                            @error('id_angkatan')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+
                                                             <div class="col-12">
                                                                 <label for="gambar" class="form-label">Foto</label>
-                                                                <input type="file" class="form-control" id="gambar">
+                                                                <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="inputAddress" name="gambar">
                                                             </div>
-                                                        </form>
+                                                            @error('gambar')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan Data</button>
                                                     </div>
+                                                </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -328,9 +398,28 @@
                                         <a class="btn btn-light disabled" role="button" aria-disabled="true"></a>
                                     </div>
                                 </div>
+
                                 <div class="card-body">
+                                    
                                     <h5 class="card-title">Data Siswa </h5>
-                                    {{-- <p>Jumlah Tanggunan : 25</p> --}}
+                                    @if (session('flash_message_success'))
+                                    <div class=" d-md-flex justify-content-md-end">
+                                    <div class="alert alert-success">
+                                        <i class="bi bi-check-circle me-1"></i>
+                                        {{ session('flash_message_success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    </div>
+                                    @endif
+                                    @if (session('flash_message_danger'))
+                                    <div class=" d-md-flex justify-content-md-end">
+                                    <div class="alert alert-danger">
+                                        <i class="bi bi-exclamation-octagon me-1"></i>
+                                        {{ session('flash_message_danger') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    </div>
+                                    @endif
                                     <!-- Tabel -->
                                     <table class="table table-borderless datatable">
                                         <thead>
@@ -341,8 +430,8 @@
                                                 <th scope="col">No Telephone</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Alamat</th>
-                                                <th scope="col">Foto</th>
-                                                <th scope="col">Status</th>
+                                                
+                                               
                                                 <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
@@ -355,97 +444,163 @@
                                                 <td>{{ $ss->no_telephone }}</td>
                                                 <td>{{ $ss->email }}</td>
                                                 <td>{{ $ss->alamat }}</td>
-                                                <td>
-                                                    <img src="{{ asset('storage/' . $ss->gambar) }}" height="100px" width="100px" alt="Siswa Photo" class="border m-2">
+                                                
+                                               
+                                                <td><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editSiswa-{{$ss->id}}"><i class="ri ri-edit-2-line"></i></button>
+                                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#infoSiswa-{{$ss->id}}"><i class="ri ri-information-line"></i></button>
+                                                    <a onclick="return confirm('Apa Anda Yakin Menghapus Data tersebut?')" href="{{ url('delete-siswa',$ss->id) }}" class="btn btn-danger btn-sm "><i class="ri ri-delete-bin-5-line"></i></a>
                                                 </td>
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                                <td><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editAdmin"><i class="ri ri-edit-2-line"></i></button>
-                                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#infoAdmin"><i class="ri ri-information-line"></i></button>
-                                                    <button type="button" class="btn btn-danger btn-sm delete" ><i class="ri ri-delete-bin-5-line"></i></button>
-                                                    <div class="modal fade" id="editAdmin" tabindex="-1">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Edit Data Admin</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form class="row g-3">
-                                                                        <div class="col-12">
-                                                                            <label for="username" class="form-label">Username</label>
-                                                                            <input type="text" class="form-control" id="inputNanme4">
-                                                                        </div>
-                                                                        <div class="col-12">
-                                                                            <label for="nama" class="form-label">Nama</label>
-                                                                            <input type="email" class="form-control" id="inputEmail4">
-                                                                        </div>
-                                                                        <div class="col-12">
-                                                                            <label for="ijenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                                                            <input type="password" class="form-control" id="inputPassword4">
-                                                                        </div>
-                                                                        <div class="col-12">
-                                                                            <label for="oto" class="form-label">Foto</label>
-                                                                            <input type="file" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                    <input type="submit" class="btn btn-primary" value="Simpan" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal fade" id="infoAdmin" tabindex="-1">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Edit Data Admin</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
+                                                @endforeach
 
-                                                                    <div class="row g-0">
-                                                                        <div class="col-md-4">
-                                                                            <img src="assets/dashBoard/img/card.jpg" class="card-img-top" alt="...">
-                                                                        </div>
-                                                                        <div class="col-md-10">
-                                                                            <form class="row g-3">
-                                                                                <div class="col-12">
-                                                                                    <label for="username" class="form-label">Username</label>
-                                                                                    <input type="text" class="form-control" id="inputNanme4">
-                                                                                </div>
-                                                                                <div class="col-12">
-                                                                                    <label for="nama" class="form-label">Nama</label>
-                                                                                    <input type="email" class="form-control" id="inputEmail4">
-                                                                                </div>
-                                                                                <div class="col-12">
-                                                                                    <label for="ijenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                                                                    <input type="password" class="form-control" id="inputPassword4">
-                                                                                </div>
-                                                                                <div class="col-12">
-                                                                                    <label for="oto" class="form-label">Foto</label>
-                                                                                    <input type="file" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
+                                                @foreach ($siswa as $edit)
+                                                <div class="modal fade" id="editSiswa-{{$edit->id}}" tabindex="-1">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Edit Data Siswa</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form class="row g-3" action="{{ url('/edit/'.$edit->id )}}" method="POST">
+                                                                    @csrf
+                                                                    <div class="col-12">
+                                                                        <label for="username" class="form-label">Username</label>
+                                                                        <input value="{{ $edit->username }}" type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username">
                                                                     </div>
+                                                                    @error('username')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+        
+                                                                    <div class="col-12">
+                                                                        <label for="nama" class="form-label">Nama</label>
+                                                                        <input value="{{$edit->nama }}" type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama">
+                                                                    </div>
+                                                                    @error('nama')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                   
+                                                                    <div class="col-12">
+                                                                        <label for="no_telephone" class="form-label @error('no_telephone') is-invalid @enderror">No Telepon</label>
+                                                                        <input value="{{ $edit->no_telephone }}" type="number" class="form-control" id="nohp" name="no_telephone">
+                                                                    </div>
+                                                                    @error('no_telephone')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+        
+                                                                    <div class="col-12">
+                                                                        <label for="email" class="form-label">Email</label>
+                                                                        <input value="{{ $edit->email }}" type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required>
+                                                                    </div>
+                                                                    @error('email')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+        
+                                                                    <div class="col-12">
+                                                                        <label for="alamat" class="form-label">Alamat</label>
+                                                                        <input value="{{ $edit->alamat }}" type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat">
+                                                                    </div>
+                                                                    @error('alamat')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+        
+                                                                    <div class="col-12">
+                                                                        <label for="password" class="form-label">Password</label>
+                                                                        <input value="{{ $edit->password }}" type="password" class="form-control" id="password @error('password') is-invalid @enderror" name="password">
+                                                                    </div>
+                                                                    @error('password')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
 
-
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                    <input type="submit" class="btn btn-primary" value="Simpan" />
-                                                                </div>
+                                                                    <div class="col-5">
+                                                                        <label for="id_kelas" class="form-label">Kelas</label>
+                                                                        <select id="id_kelas @error('id_kelas') is-invalid @enderror" name="id_kelas" class="form-select" aria-label="Default select example">
+                                                                            <option selected value="{{ $edit->id_angkatan }}"   ></option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="6">6</option>
+                                                                          </select>
+                                                                    </div>
+                                                                    @error('id_kelas')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+        
+                                                                    <div class="col-5">
+                                                                        <label for="id_angkatan" class="form-label">Tahun</label>
+                                                                        <select id="id_angkatan @error('id_angkatan') is-invalid @enderror" name="id_angkatan" class="form-select" aria-label="Default select example">
+                                                                            <option selected value="{{ $edit->id_kelas }}"   ></option>
+                                                                            <option value="1">2023</option>
+                                                                            <option value="2">2022</option>
+                                                                            <option value="3">2021</option>
+                                                                            <option value="4">2020</option>
+                                                                            <option value="5">2019</option>
+                                                                            <option value="6">2018</option>
+                                                                            <option value="7">2017</option>
+                                                                            <option value="8">2016</option>
+                                                                          </select>
+                                                                    </div>
+                                                                    @error('id_angkatan')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+        
+                                                                    <div class="col-12">
+                                                                        <label for="gambar" class="form-label">Foto</label>
+                                                                        <input value="{{ $edit->gambar }}" type="file" class="form-control @error('gambar') is-invalid @enderror" id="inputAddress" name="gambar">
+                                                                    </div>
+                                                                    @error('gambar')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Simpan Data</button>
+                                                            </div>
+                                                        </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </td>
-                                                <td></td>
+                                                </div>
+                                                @endforeach
+
+                                                @foreach ($siswa as $edit)
+                                                <div class="modal fade" id="infoSiswa-{{$edit->id}}" tabindex="-1">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Info Data Siswa</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form class="row g-3" action="{{ url('/edit/'.$edit->id )}}" method="POST">
+                                                                    @csrf
+                                                                    <div class="row g-8">
+                                                                        <div class="col-md-4">
+                                                                          <img src="assets/img/card.jpg" class="img-fluid rounded-start" alt="...">
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                          <div class="card-body">
+                                                                            <h1 class="card-title">Data Akun Siswa</h1>
+                                                                            <p class="card-text">Nama  : {{$edit->nama }}</p>
+                                                                            <p class="card-text">No.Hp :{{$edit->no_telephone }}</p>
+                                                                            <p class="card-text">Email : {{ $edit->email }}</p>
+                                                                            <p class="card-text">Alamat: {{ $edit->alamat }}</p>
+                                                                            <p class="card-text">Kelas : {{ $edit->id_kelas }}</p>
+                                                                            <p class="card-text">ID Angkatan : {{ $edit->id_angkatan }}</p>
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                        </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
                                             </tr>
-                                            {{-- </tbody>
-                                        <tbody> --}}
-                                            @endforeach
+                                           
+                                            
+
                                 </div><!-- End Recent Sales -->
                             </div>
                         </div><!-- End Left side columns -->
@@ -453,20 +608,6 @@
         </section>
 
     </main><!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    {{-- <footer id="footer" class="footer">
-        <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits"> --}}
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-    {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
-    </div>
-    </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -482,18 +623,24 @@
 
     <!-- Template Main JS File -->
     <script src="assets/dashBoard/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
     <script>
-        $('.delete').click(function() {
+        $(document).ready(function(){
+            $('#deleteSiswa').click(function() {
+            var id =$(this).attr('rel');
+            var deleteFunction=$(this).attr('rel1');
             swal({
                     title: "Hapus Data",
                     text: "Apa anda yakin hapus Data?",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
-                })
-                .then((willDelete) => {
+                },
+                function(){
+                    window.location.href="/delete/"+deleteFunction+"/"+id;
+                    .then((willDelete) => {
                     if (willDelete) {
+                       
                         swal("Data anda berhasil dihapus", {
                             icon: "success",
                         });
@@ -503,8 +650,14 @@
                         });
                     }
                 });
+                });
+                
         });
+        });
+       
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+   
 
 </body>
 

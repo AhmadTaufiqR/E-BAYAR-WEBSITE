@@ -291,31 +291,59 @@
                                             <h5 class="modal-title">Tambah Data Admin</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body" >
-                                            <form class="row g-3" method="POST" action="/admin/post">
-                                                {{csrf_field()}}
+                                        <div class="modal-body">
+                                            <form  class="row g-3" method="POST" action="{{ route('/postAdmin') }}" enctype="multipart/form-data" >
+                                                @csrf
                                                 <div class="col-12">
                                                     <label for="username" class="form-label">Username</label>
-                                                    <input type="text" class="form-control @error('usernameAdmin') is-invalid @enderror" id="username" name="username">
+                                                    <input value="{{ old('username') }}" type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username">
                                                 </div>
+                                                @error('username')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
                                                 <div class="col-12">
                                                     <label for="nama" class="form-label">Nama</label>
-                                                    <input type="text" class="form-control" id="inputEmail4" name="nama" id="nama">
+                                                    <input value="{{ old('nama') }}" type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama">
                                                 </div>
+                                                @error('nama')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                               
                                                 <div class="col-12">
-                                                    <label for="passwordAdmin" class="form-label">Password</label>
-                                                    <input type="password" class="form-control" id="passwordAdmin" name="passwordAdmin">
+                                                    <label for="nama" class="form-label">Jenis Kelamin</label>
+                                                    <select id="jenis_kelamin @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" class="form-select" aria-label="Default select example">
+                                                        <option selected value="{{ old('jenis_kelamin') }}"   ></option>
+                                                        <option value="Laki-Laki">Laki-laki</option>
+                                                        <option value="Perempuan">Perempuan</option>
+                                                      </select>
                                                 </div>
+                                                @error('jenis_kelamin')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
                                                 <div class="col-12">
-                                                    <label for="fotoAdmin" class="form-label">Foto</label>
-                                                    <input type="file" class="form-control" id="fotoAdmin" name="fotoAdmin">
+                                                    <label for="password" class="form-label">Password</label>
+                                                    <input value="{{ old('password') }}" type="password" class="form-control" id="password @error('password') is-invalid @enderror" name="password">
                                                 </div>
-                                            </form>
+                                                @error('password')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+
+                                                <div class="col-12">
+                                                    <label for="gambar" class="form-label">Foto</label>
+                                                    <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="inputAddress" name="gambar">
+                                                </div>
+                                                @error('gambar')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <input type="submit" class="btn btn-primary" value="Simpan" name="tambahAdmin" />
+                                            <button type="submit" class="btn btn-primary">Simpan Data</button>
                                         </div>
+                                    </form>
                                     </div>
                                 </div>
                             </div>
@@ -324,42 +352,26 @@
                         </div>
                     </div>
 
-                    {{-- <div class="card-body">
-                                            <h5 class="card-title">Data Admin </h5>
-                                            <p>Jumlah Admin : 25</p>
-                                            <table class="table table-borderless datatable">
-                                                <div class="table-responsive">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Username</th>
-                                                            <th>Nama</th>
-                                                            <th>Jenis Kelamin</th>
-                                                            <th>Foto</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($admin as $adm)
-                                                        <tr>
-                                                            <td>{{ $adm->id }}</td>
-                    <td>{{ $adm->username }}</td>
-                    <td>{{ $adm->nama }}</td>
-                    <td>{{ $adm->jenis_kelamin }}</td>
-                    <td>
-                        <img src="{{ asset('storage/' . $adm->gambar) }}" height="100px" width="100px" alt="Admin Photo" class="border m-2">
-                    </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                    </table> --}}
-
-
-
-
                     <div class="card-body">
                         <h5 class="card-title">Data Admin </h5>
-                        {{-- <p>Jumlah Tanggunan : 25</p> --}}
-                        <!-- Tabel -->
+                        @if (session('flash_message_success'))
+                                    <div class=" d-md-flex justify-content-md-end">
+                                    <div class="alert alert-success">
+                                        <i class="bi bi-check-circle me-1"></i>
+                                        {{ session('flash_message_success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    </div>
+                                    @endif
+                        @if (session('flash_message_danger'))
+                                    <div class=" d-md-flex justify-content-md-end">
+                                    <div class="alert alert-danger">
+                                        <i class="bi bi-exclamation-octagon me-1"></i>
+                                        {{ session('flash_message_danger') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    </div>
+                                    @endif
                         <table class="table table-borderless datatable">
                             <thead>
                                 <tr>
@@ -367,8 +379,6 @@
                                     <th scope="col">Username</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Jenis Kelamin</th>
-                                    <th scope="col">Foto</th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -378,99 +388,118 @@
                                     <td>{{ $adm->id }}</td>
                                     <td>{{ $adm->username }}</td>
                                     <td>{{ $adm->nama }}</td>
-                                    <td>{{ $adm->jenis_kelamin }}</td>
+                                    <td>{{ $adm->jenis_kelamin }}</td>                           
                                     <td>
-                                        <img src="{{ asset('storage/' . $adm->gambar) }}" height="100px" width="100px" alt="Admin Photo" class="border m-2">
-                                    </td>
-                                    <td><span class="badge bg-success">Approved</span></td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editAdmin"><i class="ri ri-edit-2-line"></i></button>
+                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editAdmin-{{ $adm->id }}"><i class="ri ri-edit-2-line"></i></button>
                                         <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#infoAdmin"><i class="ri ri-information-line"></i></button>
-                                        <button type="button" class="btn btn-danger btn-sm delete" data-id="{{ $adm->id }}"><i class="ri ri-delete-bin-5-line"></i></button>
-                                        <div class="modal fade" id="editAdmin" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Data Admin</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form class="row g-3">
-                                                            <div class="col-12">
-                                                                <label for="username" class="form-label">Username</label>
-                                                                <input type="text" class="form-control" id="inputNanme4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="nama" class="form-label">Nama</label>
-                                                                <input type="email" class="form-control" id="inputEmail4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="ijenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                                                <input type="password" class="form-control" id="inputPassword4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="oto" class="form-label">Foto</label>
-                                                                <input type="file" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <input type="submit" class="btn btn-primary" value="Simpan" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal fade" id="infoAdmin" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Data Admin</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
+                                        <a onclick="return confirm('Apa Anda Yakin Menghapus Data tersebut?')" href="{{ url('delete-admin',$adm->id) }}" class="btn btn-danger btn-sm "><i class="ri ri-delete-bin-5-line"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                                                        <div class="row g-0">
-                                                            <div class="col-md-4">
-                                                                <img src="assets/dashBoard/img/card.jpg" class="card-img-top" alt="...">
+                                @foreach ($admin as $editAdmin)
+                                                <div class="modal fade" id="editAdmin-{{$editAdmin->id}}" tabindex="-1">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Edit Data Siswa</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <div class="col-md-10">
-                                                                <form class="row g-3">
+                                                            <div class="modal-body">
+                                                                <form class="row g-3" method="POST" action="{{ url('/editAdmin/'.$editAdmin->id )}}">
+                                                                    @csrf
                                                                     <div class="col-12">
                                                                         <label for="username" class="form-label">Username</label>
-                                                                        <input type="text" class="form-control" id="inputNanme4">
+                                                                        <input value="{{ $editAdmin->username }}" type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username">
                                                                     </div>
+                                                                    @error('username')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                    
                                                                     <div class="col-12">
                                                                         <label for="nama" class="form-label">Nama</label>
-                                                                        <input type="email" class="form-control" id="inputEmail4">
+                                                                        <input value=" {{ $editAdmin->nama }} " type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama">
                                                                     </div>
+                                                                    @error('nama')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                   
                                                                     <div class="col-12">
-                                                                        <label for="ijenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                                                        <input type="password" class="form-control" id="inputPassword4">
+                                                                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                                                        <select id="jenis_kelamin @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" class="form-select" aria-label="Default select example">
+                                                                            <option selected value="{{ $editAdmin->jenis_kelamin }}"   ></option>
+                                                                            <option value="Laki-Laki">Laki-laki</option>
+                                                                            <option value="Perempuan">Perempuan</option>
+                                                                          </select>
                                                                     </div>
+                                                                    @error('jenis_kelamin')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                    
                                                                     <div class="col-12">
-                                                                        <label for="oto" class="form-label">Foto</label>
-                                                                        <input type="file" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                                                        <label for="password" class="form-label">Password</label>
+                                                                        <input value="{{ $editAdmin->password }} " type="password" class="form-control" id="password @error('password') is-invalid @enderror" name="password">
                                                                     </div>
-                                                                </form>
+                                                                    @error('password')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                    
+                                                                    <div class="col-12">
+                                                                        <label for="gambar" class="form-label">Foto</label>
+                                                                        <input value="{{ $editAdmin->gambar }}" type="file" class="form-control @error('gambar') is-invalid @enderror" id="inputAddress" name="gambar">
+                                                                    </div>
+                                                                    @error('gambar')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Simpan Data</button>
+                                                            </div>
+                                                        </form>
                                                             </div>
                                                         </div>
-
-
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <input type="submit" class="btn btn-primary" value="Simpan" />
+                                                </div>
+                                                @endforeach
+
+                                @foreach ($admin as $editAdmin)               
+                                <div class="modal fade" id="infoAdmin" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Info Admin</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                    <div class="col-md-10">
+                                                        <form class="row g-3 justify-content-center" method="POST" action="{{ url('/editAdmin/'.$editAdmin->id )}}">
+                                                            @csrf
+                                                            <div class="row g-8">
+                                                                <div class="col-md-6">
+                                                                    <img src="{{ asset('storage/' . $editAdmin->gambar) }}" alt="Gambar">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                  <div class="card-body">
+                                                                    <h1 class="card-title">Data Admin</h1>
+                                                                    <p class="card-text">Username  : {{$editAdmin->username }}</p>
+                                                                    <p class="card-text">Nama :{{$editAdmin->nama }}</p>
+                                                                    <p class="card-text">Jenis Kelamin : {{ $editAdmin->jenis_kelamin }}</p>
+                                                                    <p class="card-text">Tanggal Pembuatan Akun : {{ $editAdmin->created_at }}</p>
+                                                                    
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                         </div>
-
-                                    </td>
-
-                                </tr>
-
+                                    </div>
+                                </div>
                                 @endforeach
+                         
                             </tbody>
                         </table>
 
@@ -486,23 +515,7 @@
             </div><!-- End Left side columns -->
             </div>
         </section>
-
     </main><!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    {{-- <footer id="footer" class="footer">
-                        <div class="copyright">
-                            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-                        </div> --}}
-    <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-    </footer><!-- End Footer -->
-
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->

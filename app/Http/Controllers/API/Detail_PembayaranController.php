@@ -5,8 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Helper\ApiFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\detail_pembayaran;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class Detail_PembayaranController extends Controller
 {
@@ -15,16 +18,34 @@ class Detail_PembayaranController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
+    
+    public function exportPdf(){
+      
+        $pdf = detail_pembayaran::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
+    }
     public function index()
     {
-        $data = detail_pembayaran::all();
-        
-        if($data){
-            return ApiFormatter::createApi(200, 'Success', $data);
-        }else{
-            return ApiFormatter::createApi(400, 'Failed');
-        }
+        $data =detail_pembayaran::where('status_pembayaran','Selesai')->get();
+        return view('layouts.penarikan', ['data'=>$data]);
+
     }
+
+    public function laporan()
+    {
+        $data =detail_pembayaran::all();
+        return view('layouts.laporan', ['data'=>$data]);
+
+    }
+    public function dashboard()
+    {
+        $data =detail_pembayaran::where('status_pembayaran','pending')->get();
+        return view('layouts.dashboard', ['data'=>$data]);
+
+    }
+
+    
 
     public function getAll()
     {
