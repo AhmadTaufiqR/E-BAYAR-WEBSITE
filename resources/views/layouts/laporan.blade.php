@@ -264,9 +264,9 @@
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
 
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                                <a href="" class="btn btn-primary" data-bs-toggle="modal">
                                     Unduh File
-                                </button>
+                                </a>
                                 {{-- <button type="button" class="btn btn-primary">Primary</button> --}}
 
                             </div>
@@ -279,43 +279,6 @@
                                     <p> </p>
                                     <!-- Modal Button Tambah Data -->
                                     <div class="d-grid gap-10 d-md-flex justify-content-md-end">
-                                        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
-                                            Tambah Data
-                                        </button> --}}
-                                        {{-- <div class="modal fade" id="verticalycentered" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Tambah Data Siswa</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form class="row g-3">
-                                                            <div class="col-12">
-                                                                <label for="inputNanme4" class="form-label">Your Name</label>
-                                                                <input type="text" class="form-control" id="inputNanme4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="inputEmail4" class="form-label">Email</label>
-                                                                <input type="email" class="form-control" id="inputEmail4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="inputPassword4" class="form-label">Password</label>
-                                                                <input type="password" class="form-control" id="inputPassword4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="inputAddress" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                         <span></span>
                                         <a class="btn btn-light disabled" role="button" aria-disabled="true"></a>
                                     </div>
@@ -329,17 +292,35 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Username</th>
-                                                <th scope="col">Nama</th>
-                                                <th scope="col">No Telephone</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Alamat</th>
-                                                <th scope="col">Foto</th>
+                                                <th scope="col">ID Pembayaran</th>
+                                                <th scope="col">ID Siswa</th>
+                                                <th scope="col">Transaksi ID</th>
+                                                <th scope="col">Order ID</th>
+                                                <th scope="col">Tipe Pembayaran</th>
+                                                <th scope="col">Jumlah</th>
+                                                <th scope="col">Status Pembayaran</th>
+                                                <th scope="col">Tanggal Buat Transaksi</th>
+                                                <th scope="col">Tanggal Pembayaran</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($data as $ss)
+                                            <tr>
+                                                <td>{{ $ss->id }}</td>
+                                                <td>{{ $ss->id_pembayaran }}</td>
+                                                <td>{{ $ss->id_siswa }}</td>
+                                                <td>{{ $ss->transaction_id }}</td>
+                                                <td>{{ $ss->order_id }}</td>
+                                                <td>{{ $ss->tipe_pembayaran }}</td>
+                                                <td>Rp.{{ $ss->jumlah }}</td>
+                                                <td>{{ $ss->status_pembayaran }}</td>
+                                                <td>{{ $ss->created_at }}</td>
+                                                <td>{{ $ss->updated_at }}</td>
+                                                
+                                                @endforeach
+                                        </tbody>
                                           
-                                   
+                                    </table>
                                 </div>
 
                             </div>

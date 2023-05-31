@@ -295,14 +295,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Saldo <span>| Saldo Keuangan Siswa</span></h5>
+                  <h5 class="card-title">Saldo <span>| Saldo Keuangan Sekolah</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cash-coin"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>Rp.345.000.000.00</h6>
+                      <h6>Rp.65.500.000.00</h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
@@ -330,7 +330,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Transaksi Baru</h5>
+                  <h5 class="card-title">Transaksi Baru<span> | Bulan Ini</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -487,54 +487,29 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Data Siswa <span>| Today</span></h5>
+                  <h5 class="card-title">Data Transaksi Baru<span>| Hari ini</span></h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
-                        <th scope="col">No Absen</th>
-                        <th scope="col">Nama Siswa</th>
-                        <th scope="col">Kelas</th>
-                        <th scope="col">Jenis Transaksi</th>
-                        <th scope="col">Status Transaksi</th>
+                        <th scope="col">No</th>
+                        <th scope="col">ID Pembayaran</th>
+                        <th scope="col">ID Siswa</th>
+                        <th scope="col">Tipe Pembayaran</th>
+                        <th scope="col">Status Pembayaran</th>
+                        <th scope="col">Tanggal Masuk Transaksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">6</a></td>
-                        <td>Uang Gedung</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">5</a></td>
-                        <td>Uang Gedung</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">4</a></td>
-                        <td>Uang Gedung</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">3</a></td>
-                        <td>Uang Spp</td>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">2</a></td>
-                        <td>Uang Spp</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
+                      @foreach ($data as $ss)
+                                            <tr>
+                                                <td>{{ $ss->id }}</td>
+                                                <td>{{ $ss->id_pembayaran }}</td>
+                                                <td>{{ $ss->id_siswa }}</td>
+                                                <td>{{ $ss->tipe_pembayaran }}</td>
+                                                <td><h5><span class="badge bg-warning text-dark">{{ $ss->status_pembayaran }}</span></h5></td>
+                                                <td>{{ $ss->created_at }}</td>
+                                                @endforeach
                     </tbody>
                   </table>
 

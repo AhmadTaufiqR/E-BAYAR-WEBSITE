@@ -18,6 +18,85 @@ class SiswaController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
+
+    public function post(Request $request)
+    { 
+        try{
+            $this->validate($request,[
+                'username' => 'required|unique:tb_siswa',
+                'password' => 'required',
+                'nama' => 'required',
+                'no_telephone' => 'required|unique:tb_siswa|max:13',
+                'email' => 'required|unique:tb_siswa',
+                'id_angkatan' => 'required',
+                'id_kelas' => 'required',
+                // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5052',
+                
+            ]);
+
+            $filename = '';
+   
+            if ($request->file('gambar')) {
+                $file = $request->file('gambar');
+                $generateFilename = join('', [uniqid(), now()->timestamp]);
+                $extention = $file->getClientOriginalExtension();
+                $filename = join('.', [$generateFilename, $extention]);
+                $filename = $file->storeAs('admin',  $filename);
+            }
+                siswa::create([
+                'nama'=>$request->input('nama'),
+                'password'=>$request->input('password'),
+                'no_telephone'=>$request->input('no_telephone'),
+                'email'=>$request->input('email'),
+                'username'=>$request->input('username'),
+                'gambar'=>$request->input('gambar'),
+                'alamat'=>$request->input('alamat'),
+                'id_angkatan'=>$request->input('id_angkatan'),
+                'id_kelas'=>$request->input('id_kelas'),
+                // 'gambar'=> $filename
+            ]);
+            return redirect()->back()->with('flash_message_success','Anda Berhasil Menambahkan data');
+        }
+        catch (\Throwable $th) {
+            return redirect()->back()->with('flash_message_danger','Anda Gagal Menambahkan data');
+        }
+        
+
+      
+
+    }
+
+    public function siswa(){
+        $siswa=siswa::all(); 
+        
+        return view('layouts.dataasiswa',compact('siswa'));
+    }
+
+    public function edit(Request $request, $id)
+    {
+        
+        if ($request->isMethod('post')) {
+            $edit  =$request->all();
+            
+          
+            siswa::where(['id'=>$id])->update(['username'=>$edit['username'],
+            'nama'=>$edit['nama'],'no_telephone'=>$edit['no_telephone'],'email'=>$edit['email'],
+            'alamat'=>$edit['alamat'],'gambar'=>$edit['gambar'],'password'=>$edit['password']]);
+
+            return redirect()->back()->with('flash_message_success','Data berhasil diubah ');
+       
+        }
+
+    }
+
+    public function destroysiswa($id)
+    {
+        $data = siswa::findOrfail($id);
+        $data->delete();
+        return redirect()->back()->with('flash_message_success','Anda Berhasil Hapus data');
+    }
+
+
     public function index(request $request)
     {
         
@@ -158,13 +237,9 @@ class SiswaController extends Controller
     *
     * @param  int  $id
     * @return \Illuminate\Http\Response
-    */
-    public function edit($id)
-    {
-        //
-    }
+   
     
-    /**
+ 
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request

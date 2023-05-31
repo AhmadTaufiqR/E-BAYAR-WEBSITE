@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AdminController;
+use App\Http\Controllers\API\Detail_PembayaranController;
+use App\Http\Controllers\API\PembayaranController;
+use App\Http\Controllers\API\SiswaController;
+use App\Http\Controllers\DashboardController;
+use App\Models\detail_pembayaran;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +19,8 @@ use App\Http\Controllers\API\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('layouts.dashboard');
+    return view('layouts.error404');
 });
 Route::get('/landingpage', function () {
     return view('layouts.landingpage');
@@ -23,38 +28,56 @@ Route::get('/landingpage', function () {
 Route::post('/login', function () {
     return view('layouts.login');
 });
-Route::post('/login-check',[AdminController::class, 'login'])->name('login-check');
 
-Route::get('/dashboard', function () {
-    return view('layouts.dashboard');
-});
 Route::get('/register', function () {
    return view('layouts.register');
 });
-Route::get('/datasiswa', [App\Http\Controllers\API\SiswaController::class, 'index']);
-Route::get('/dataadmin', [App\Http\Controllers\API\AdminController::class, 'index']);
-Route::get('/tanggunganspp', function () {
-    return view('layouts.tanggunganspp');
-});
-Route::get('/tanggunganuanggedung', function () {
-    return view('layouts.tanggunganuanggedung');
-});
-Route::get('/penarikan', function () {
-    return view('layouts.penarikan');
-});
-Route::get('/laporan', function () {
-    return view('layouts.laporan');
-});
+
 Route::get('/profile', function () {
     return view('layouts.profile');
 });
 Route::get('/login', function () {
     return view('layouts.login');
 });
-Route::get('/register', function () {
-    return view('layouts.register');
-});
 
-Route::post('/admin/tambah',[AdminController::class,'tambah'])->name('simpanData');
-Route::resource('/admin/post',AdminController::class)->middleware('auth');
+//logincek
+Route::post('/login-check',[AdminController::class, 'login'])->name('login-check');
+
+//mengambil database
+Route::get('/dashboard',[Detail_PembayaranController::class,'dashboard']);
+Route::get('/datasiswa', [SiswaController::class, 'index']);
+Route::get('/dataadmin', [AdminController::class, 'index']);
+Route::post('/post',[SiswaController::class, 'post'])->name('/post');
+Route::post('/postAdmin',[AdminController::class, 'postAdmin'])->name('/postAdmin');
+
+
+Route::get('/penarikan',[Detail_PembayaranController::class,'index']);
+Route::get('/laporan',[Detail_PembayaranController::class,'laporan']);
+
+//tanggungan spp
+Route::get('/tanggunganspp',[PembayaranController::class,'index']);
+Route::post('/postSpp',[PembayaranController::class, 'tanggunganspp'])->name('/postSpp');
+Route::match(['get','post'],'/editSpp/{id}',[PembayaranController::class,'editSpp']);
+
+//tanggungan uang gedung
+Route::get('/tanggunganuanggedung',[PembayaranController::class,'index1']);
+Route::post('/postUang',[PembayaranController::class, 'tanggunganuang'])->name('/postUang');
+Route::match(['get','post'],'/editUang/{id}',[PembayaranController::class,'editUang']);
+
+
+//siswa
+Route::get('/siswa',[SiswaController::class,'siswa'])->name('/siswa');
+Route::match(['get','post'],'/edit/{id}',[SiswaController::class,'edit']);
+Route::get('/delete-siswa/{id}',[SiswaController::class,'destroysiswa'])->name('delete-siswa');
+//admin
+Route::get('/admin',[AdminController::class,'admin'])->name('/admin');
+Route::match(['get','post'],'/editAdmin/{id}',[AdminController::class,'editAdmin']);
+Route::get('/delete-admin/{id}',[AdminController::class,'destroyadmin'])->name('delete-admin');
+//pdf
+Route::get('/export-pdf', 'Detail_PembayaranController@exportPdf')->name('export.pdf');
+
+//tanggungan
+Route::get('/delete-spp/{id}',[PembayaranController::class,'destroyspp'])->name('delete-spp');
+Route::get('/delete-uang/{id}',[PembayaranController::class,'destroyuang'])->name('delete-uang');
+
 

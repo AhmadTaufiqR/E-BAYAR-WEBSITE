@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Tanggungan Uang Gedung</title>
+    <title>Tanggungan Spp</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -248,266 +248,219 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                    <li class="breadcrumb-item active">Data Tanggungan Uang Gedung</li>
+                    <li class="breadcrumb-item active">Data Tanggungan SPP</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <!-- End Page Title -->
         <section class="section dashboard">
-            <div class="row">
+            
+        <div class="row">
 
                 <!-- Left side columns -->
                 <div class="col-12">
                     <div class="row-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
-
-                                <button type="button" class="btn btn-primary">Primary</button>
-
-                            </div>
-                        </div>
-                        <!-- Recent Sales -->
-                        <div class="col-12">
-                            <div class="card recent-sales overflow-auto">
-
-                                <div class="filter">
-                                    <p> </p>
-                                    <!-- Modal Button Tambah Data -->
-                                    <div class="d-grid gap-10 d-md-flex justify-content-md-end">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
-                                            Tambah Data
-                                        </button>
-                                        <div class="modal fade" id="verticalycentered" tabindex="-1">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Tambah Data Siswa</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form class="row g-3">
-                                                            <div class="col-12">
-                                                                <label for="inputNanme4" class="form-label">Your Name</label>
-                                                                <input type="text" class="form-control" id="inputNanme4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="inputEmail4" class="form-label">Email</label>
-                                                                <input type="email" class="form-control" id="inputEmail4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="inputPassword4" class="form-label">Password</label>
-                                                                <input type="password" class="form-control" id="inputPassword4">
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label for="inputAddress" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <div class="row-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h1 class="card-title"></h1>
+    
+                                    {{-- <button type="button" class="btn btn-primary">Primary</button> --}}
+                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </button>
+                                    <div class="filter">
+                                        <p> </p>
+                                        <!-- Modal Button Tambah Data -->
+                                        <div class="d-grid gap-10 d-md-flex justify-content-md-end">
+        
+                                            <div class="modal fade" id="verticalycentered" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Tambah Tanggungan Uang Gedung</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="row g-3" action="{{ route('/postUang') }}" method="POST">
+                                                                @csrf
+                                                                <div class="col-12">
+                                                                    <input value="Tanggungan Uang Gedung" type="hidden" class="form-control @error('tipe') is-invalid @enderror" id="alamat" name="tipe">
+                                                                </div>
+                                                                @error('tipe')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                                
+                                                                <div class="col-12">
+                                                                    <label for="bulan" class="form-label">Bulan</label>
+                                                                    <select id="bulan @error('bulan') is-invalid @enderror" name="bulan" class="form-select" aria-label="Default select example" >
+                                                                        <option selected value=""   ></option>
+                                                                        <option value="Januari">Januari</option>
+                                                                        <option value="Februari">Februari</option>
+                                                                        <option value="Maret">Maret</option>
+                                                                        <option value="April">April</option>
+                                                                        <option value="Mei">Mei</option>
+                                                                        <option value="Juni">Juni</option>
+                                                                        <option value="Juli">Juli</option>
+                                                                        <option value="Agustus">Agustus</option>
+                                                                        <option value="September">September</option>
+                                                                        <option value="Oktober">Oktober</option>
+                                                                        <option value="November">November</option>
+                                                                        <option value="Desember">Desember</option>
+                                                                      </select>
+                                                                </div>
+                                                                @error('bulan')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                               
+                                                                <div class="col-12">
+                                                                    <label for="jumlah_bayar" class="form-label @error('no_telephone') is-invalid @enderror">Jumlah Pembayaran</label>
+                                                                    <input placeholder="Rp." value="{{ old('jumlah_bayar') }}" type="number" class="form-control" id="jumlah_bayar" name="jumlah_bayar">
+                                                                </div>
+                                                                @error('jumlah_bayar')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+    
+                                                                <div class="col-12">
+                                                                    <label for="awal_pembayaran" class="form-label">Tanggal Pembayaran</label>
+                                                                    <input value="{{ old('email') }}" type="date" class="form-control @error('awal_pembayaran') is-invalid @enderror" id="awal_pembayaran" name="awal_pembayaran" >
+                                                                </div>
+                                                                @error('awal_pembayaran')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+    
+                                                                <div class="col-12">
+                                                                    <input value="2" type="hidden" class="form-control @error('id_admin') is-invalid @enderror" id="alamat" name="id_admin">
+                                                                </div>
+                                                                @error('id_admin')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+       
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Simpan Data</button>
+                                                        </div>
+                                                    </form>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <span></span>
+                                            <a class="btn btn-light disabled" role="button" aria-disabled="true"></a>
                                         </div>
-                                        <span></span>
-                                        <a class="btn btn-light disabled" role="button" aria-disabled="true"></a>
                                     </div>
                                 </div>
 
+                            </div>
+                        <!-- Recent Sales -->
+                        <div class="col-12">
+                            <div class="card recent-sales overflow-auto">
                                 <div class="card-body">
-                                    <h5 class="card-title">Tanggungan Uang Gedung </h5>
+                                    <h5 class="card-title">Data Tanggungan SPP </h5>
+                                    @if (session('flash_message_success'))
+                                    <div class=" d-md-flex justify-content-md-end">
+                                    <div class="alert alert-success">
+                                        <i class="bi bi-check-circle me-1"></i>
+                                        {{ session('flash_message_success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    </div>
+                                    @endif
+                        @if (session('flash_message_danger'))
+                                    <div class=" d-md-flex justify-content-md-end">
+                                    <div class="alert alert-danger">
+                                        <i class="bi bi-exclamation-octagon me-1"></i>
+                                        {{ session('flash_message_danger') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    </div>
+                                    @endif
                                     <p>Jumlah Tanggunan : 25</p>
                                     <!-- Tabel -->
                                     <table class="table table-borderless datatable">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Nama</th>
-                                                <th scope="col">Alamat</th>
-                                                <th scope="col">Status</th>
+                                                <th scope="col">Bulan</th>
+                                                <th scope="col">Tipe</th>
+                                                <th scope="col">Jumlah Pembayaran</th>
+                                                <th scope="col">Awal pembayaran</th>
+                                               
+                                                
                                                 <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($tanggunganuanggedung as $ss)
                                             <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2457</a></th>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2147</a></th>
-                                                <td>Bridie Kessler</td>
-                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2049</a></th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Angus Grady</td>
-                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-
-                                                <td><span class="badge bg-danger">Rejected</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><a href="#">#2644</a></th>
-                                                <td>Raheem Lehner</td>
-                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
+                                                <td>{{ $ss->id }}</td>
+                                                <td>{{ $ss->bulan }}</td>
+                                                <td><h5><span class="badge bg-warning text-dark">{{ $ss->tipe }}</span></h5></td>
+                                                <td>Rp.{{ $ss->jumlah_bayar }}</td>
+                                                <td>{{ $ss->awal_pembayaran }}</td>
+                                                
+                                              
+                                                <td><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editUang-{{$ss->id}}"><i class="ri ri-edit-2-line"></i></button>
+                                                    <a onclick="return confirm('Apa Anda Yakin Menghapus Data tersebut?')" href="{{ url('delete-spp',$ss->id) }}" class="btn btn-danger btn-sm "><i class="ri ri-delete-bin-5-line"></i></a>
+                                                </td>
+                                                <div class="modal fade" id="editUang-{{$ss->id}}" tabindex="-1">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Update Tanggungan Uang Gedung</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form class="row g-3" action="{{ url('/editUang/'.$ss->id )}}" method="POST">
+                                                                    @csrf
+                                                                    <div class="col-12">
+                                                                        <label for="bulan" class="form-label">Bulan</label>
+                                                                        <select id="bulan @error('bulan') is-invalid @enderror" name="bulan" class="form-select" aria-label="Default select example" >
+                                                                            <option selected value="{{ $ss->bulan }}"   ></option>
+                                                                            <option value="Januari">Januari</option>
+                                                                            <option value="Februari">Februari</option>
+                                                                            <option value="Maret">Maret</option>
+                                                                            <option value="April">April</option>
+                                                                            <option value="Mei">Mei</option>
+                                                                            <option value="Juni">Juni</option>
+                                                                            <option value="Juli">Juli</option>
+                                                                            <option value="Agustus">Agustus</option>
+                                                                            <option value="September">September</option>
+                                                                            <option value="Oktober">Oktober</option>
+                                                                            <option value="November">November</option>
+                                                                            <option value="Desember">Desember</option>
+                                                                          </select>
+                                                                    </div>
+                                                                    @error('bulan')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                   
+                                                                    <div class="col-12">
+                                                                        <label for="jumlah_bayar" class="form-label @error('no_telephone') is-invalid @enderror">Jumlah Pembayaran</label>
+                                                                        <input placeholder="Rp." value="{{ $ss->jumlah_bayar }}" type="number" class="form-control" id="jumlah_bayar" name="jumlah_bayar">
+                                                                    </div>
+                                                                    @error('jumlah_bayar')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+        
+                                                                    <div class="col-12">
+                                                                        <label for="awal_pembayaran" class="form-label">Tanggal Pembayaran</label>
+                                                                        <input value="{{ $ss->awal_pembayaran }}" type="date" class="form-control @error('awal_pembayaran') is-invalid @enderror" id="awal_pembayaran" name="awal_pembayaran" >
+                                                                    </div>
+                                                                    @error('awal_pembayaran')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Simpan Data</button>
+                                                            </div>
+                                                        </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
                                         </tbody>
                                     </table>
 
@@ -521,21 +474,7 @@
         </section>
 
     </main><!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-        <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-    </footer><!-- End Footer -->
-
+    
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
